@@ -1,3 +1,17 @@
+<img src=".github/rdf-array-logo.png" alt="[@rdfjs/types]" width="96" align="right">
+
+# @rdfjs/types-array: RDF/JS types with sequences
+
+**RDF-** fork of [@rdfjs/types](https://github.com/rdfjs/types): the RDF/JS data model gains a
+fifth kind of term, the **sequence** (`termType: "Sequence"`, `elements: readonly Term[]`),
+which the `Term` union includes and `DataFactory.sequence(elements)` creates.
+`(1 2)` in Turtle is one object holding its elements; there are no `rdf:first`/`rdf:rest`
+triples and `()` is the empty sequence. Used by
+[N3.js-array](https://github.com/rdf-array/N3.js-array) and
+[shex.js-array](https://github.com/rdf-array/shex.js-array). Branch `rdf-sequences`.
+
+---
+
 # RDF/JS Types
 
 Authoritative TypeScript typings for all RDF/JS specifications

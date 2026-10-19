@@ -1,3 +1,7 @@
+# RDF- (rdf-array/types-array)
+
+- `Sequence` term (`termType: "Sequence"`, `elements`), added to `Term`; `DataFactory.sequence(elements)` and `fromTerm(Sequence)`.
+
 # @rdfjs/types
 
 ## 2.0.1

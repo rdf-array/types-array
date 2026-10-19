@@ -2,15 +2,42 @@
 /* https://rdf.js.org/data-model-spec/ */
 
 /**
- * Contains an Iri, RDF blank Node, RDF literal, variable name, default graph, or a quad
+ * Contains an Iri, RDF blank Node, RDF literal, variable name, default graph, a quad, or a sequence
  * @see NamedNode
  * @see BlankNode
  * @see Literal
  * @see Variable
  * @see DefaultGraph
  * @see BaseQuad
+ * @see Sequence
  */
-export type Term = NamedNode | BlankNode | Literal | Variable | DefaultGraph | BaseQuad;
+export type Term = NamedNode | BlankNode | Literal | Variable | DefaultGraph | BaseQuad | Sequence;
+
+/**
+ * RDF-: an ordered sequence of terms that is itself a term.
+ * `(1 2)` in Turtle is one object holding two literals; there are no
+ * rdf:first/rdf:rest triples and `()` is the empty sequence, not rdf:nil.
+ */
+export interface Sequence {
+    /**
+     * Contains the constant "Sequence".
+     */
+    termType: "Sequence";
+    /**
+     * A canonical string listing the elements, so that equal sequences have equal values.
+     */
+    value: string;
+    /**
+     * The elements, in order.
+     */
+    elements: readonly Term[];
+
+    /**
+     * @param other The term to compare with.
+     * @return True if and only if other has termType "Sequence" and the same elements, in order.
+     */
+    equals(other: Term | null | undefined): boolean;
+}
 
 /**
  * Contains an IRI.
@@ -296,6 +323,11 @@ export interface DataFactory<OutQuad extends BaseQuad = Quad, InQuad extends Bas
     quad(subject: InQuad['subject'], predicate: InQuad['predicate'], object: InQuad['object'], graph?: InQuad['graph']): OutQuad;
 
     /**
+     * RDF-: returns a new instance of Sequence holding the given elements, in order.
+     */
+    sequence?(elements: readonly Term[]): Sequence;
+
+    /**
      * @param original The original term.
      * @return A new instance of the term such that newTermInstance.equals(original) returns true.
      * @see Term
@@ -306,6 +338,7 @@ export interface DataFactory<OutQuad extends BaseQuad = Quad, InQuad extends Bas
     fromTerm(original: Variable): Variable;
     fromTerm(original: DefaultGraph): DefaultGraph;
     fromTerm(original: BaseQuad): OutQuad;
+    fromTerm(original: Sequence): Sequence;
 
     /**
      * @param original The original quad.
