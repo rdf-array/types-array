@@ -164,7 +164,7 @@ export interface DefaultGraph {
  * @see BlankNode
  * @see Variable
  */
-export type Quad_Subject = NamedNode | BlankNode | Quad | Variable;
+export type Quad_Subject = NamedNode | BlankNode | Quad | Variable | Sequence;
 
 /**
  * The predicate, which is a NamedNode or Variable.
@@ -180,7 +180,7 @@ export type Quad_Predicate = NamedNode | Variable;
  * @see BlankNode
  * @see Variable
  */
-export type Quad_Object = NamedNode | Literal | BlankNode | Quad | Variable;
+export type Quad_Object = NamedNode | Literal | BlankNode | Quad | Variable | Sequence;
 
 /**
  * The named graph, which is a DefaultGraph, NamedNode, BlankNode or Variable.
