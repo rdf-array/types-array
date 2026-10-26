@@ -14,7 +14,7 @@
 export type Term = NamedNode | BlankNode | Literal | Variable | DefaultGraph | BaseQuad | Sequence;
 
 /**
- * RDF-: an ordered sequence of terms that is itself a term.
+ * rdf-array: an ordered sequence of terms that is itself a term.
  * `(1 2)` in Turtle is one object holding two literals; there are no
  * rdf:first/rdf:rest triples and `()` is the empty sequence, not rdf:nil.
  */
@@ -323,7 +323,7 @@ export interface DataFactory<OutQuad extends BaseQuad = Quad, InQuad extends Bas
     quad(subject: InQuad['subject'], predicate: InQuad['predicate'], object: InQuad['object'], graph?: InQuad['graph']): OutQuad;
 
     /**
-     * RDF-: returns a new instance of Sequence holding the given elements, in order.
+     * rdf-array: returns a new instance of Sequence holding the given elements, in order.
      */
     sequence?(elements: readonly Term[]): Sequence;
 

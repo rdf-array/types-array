@@ -1,4 +1,4 @@
-# RDF- (rdf-array/types-array)
+# rdf-array (rdf-array/types-array)
 
 - `Sequence` term (`termType: "Sequence"`, `elements`), added to `Term`; `DataFactory.sequence(elements)` and `fromTerm(Sequence)`.
 
